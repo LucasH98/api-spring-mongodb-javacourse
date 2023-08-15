@@ -10,5 +10,5 @@ Maven
 MongoDB
 
 
-# Considerações Finais
+# Considerações 
 Este é um projeto básico para demonstrar a criação e gerenciamento de usuários, posts e comentários usando Spring Boot e MongoDB. Sinta-se à vontade para explorar e expandir as funcionalidades de acordo com suas necessidades. Para mais informações, consulte a documentação oficial do Spring Boot e do MongoDB.

@@ -32,13 +32,19 @@ public class Instantiation implements CommandLineRunner {
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
 		Userrepository.saveAll(Arrays.asList(maria,alex,bob));
+		//primeiro salvando os users para depois serem copiados para o dto 
 
 		
 		Post post1 = new Post(null,new Date(),"Partiu viagem ","vou viajar para sao paulo ,abraços",new AuthorDTO(maria));
 		Post post2 = new Post(null,new Date(),"Bom dia","acordei feliz hoje ! ",new AuthorDTO(maria));
-		
+		//Userrepository.saveAll(Arrays.asList(maria,alex,bob)); -->> SE EU FIZESSE DESSA FORMA  OS USERS NAO TERIAM ID 
 		postRepository.saveAll(Arrays.asList(post1,post2));
 
+		//refatorando a carga inicial do banco , incluindo associações  de posts
+		
+		maria.getPosts().add(post1);
+		maria.getPosts().add(post2);
+		Userrepository.save(maria);
 		
 		
 		

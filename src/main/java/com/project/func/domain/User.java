@@ -1,9 +1,12 @@
 package com.project.func.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user") //para falar pro spring que essa classe vai ser uma coleção do meu banco mongo
@@ -14,6 +17,9 @@ private static final long serialVersionUID = 1L;
 private String id ;
 private String name;
 private String email;
+
+@DBRef(lazy = true )//garante que os posts vao ser carregados somente se eu explicitamente acessa-los , 
+private List<Post> posts = new ArrayList<>();
  
 public User() {
 	
@@ -51,6 +57,11 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
+public List<Post> getPosts() {
+	return posts;
+}
+
+
 @Override
 public int hashCode() {
 	return Objects.hash(id);
@@ -67,6 +78,8 @@ public boolean equals(Object obj) {
 	User other = (User) obj;
 	return Objects.equals(id, other.id);
 }
+
+
 
 
 }
